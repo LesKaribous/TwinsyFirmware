@@ -22,11 +22,16 @@ void InputBase::update(){}
 
 AnalogInput::AnalogInput(int pin, int threshold) : InputBase(pin){
     _threshold = threshold;
+    _pValue = 0;
 }
 
+void AnalogInput::update(){
+    _pValue = _value;
+    _value = analogRead(_pin);
+}
 
 bool AnalogInput::getDigitalState(){
-    return analogRead(_pin) > 20;
+    return _value > 20;
 }
 
 int AnalogInput::getRawValue(){
@@ -34,17 +39,22 @@ int AnalogInput::getRawValue(){
 }
 
 int AnalogInput::getValue(){
-    analogRead(_pin);
+    return _value;
 }
 
 //Digital Input (Use Pullup)
 DigitalInput::DigitalInput(int pin, bool inverted) : InputBase(pin, true){
     _inverted = inverted;
-    _pState = _inverted;
+    _state =_pState = _inverted;
+}
+
+void DigitalInput::update(){
+    _pState = _state;
+    _state = digitalRead(_pin);
 }
 
 bool DigitalInput::getState(){
-    return digitalRead(_pin) != _inverted;
+    return _state != _inverted;
 }
 
 bool DigitalInput::isInverted(){
@@ -52,9 +62,7 @@ bool DigitalInput::isInverted(){
 }
 
 bool DigitalInput::changed(){
-    bool res = digitalRead(_pin) != _pState;
-    _pState = digitalRead(_pin);
-    return res;
+    return _state != _pState;
 }
 
 void DigitalInput::setInverted(bool state){

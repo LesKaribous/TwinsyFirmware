@@ -5,7 +5,7 @@ public:
 
     InputBase(int pin, bool pullup = false);
     void init();
-    void update();
+    virtual void update();
 
 protected:
     int _pin;
@@ -16,22 +16,29 @@ class AnalogInput : public InputBase{
 public:
     AnalogInput(int pin, int threshold = 20);
 
+    virtual void update();
+
     bool getDigitalState();//may be used as a digital input
     int getRawValue();  //Raw data from analogRead
     int getValue();     //Stable value
 
+    bool changed();
+
 protected : 
     int _threshold;
-
+    int _pValue;
+    int _value;
 };
 
 class DigitalInput : public InputBase{
 public :
     DigitalInput(int pin, bool inverted = false);
 
+    virtual void update();
+
     bool getState();
+
     bool isInverted();
-    
     void setInverted(bool state = true);
 
     bool changed();
@@ -39,6 +46,7 @@ public :
 protected:
     bool _inverted;
     bool _pState;
+    bool _state;
 };
 
 typedef DigitalInput Switch;
