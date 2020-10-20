@@ -1,10 +1,10 @@
 #pragma once
 #include "InputBase.h"
+#include "Switch.h"
 
 class Button : public DigitalInput{
 public :
-
-    Button(int pin, long pressTimeout = 180, bool inverted = false);
+    Button(int pin, bool inverted = false, long pressTimeout = 180);
 
     void update();
     bool pressed();
@@ -18,9 +18,9 @@ private:
     bool _pressed;
 };
 
-class AnalogButton : public AnalogInput{
-
-    AnalogButton(int pin, long pressThreshold = 180,int analogThreshol = 20, bool inverted = false);
+class AnalogButton : public AnalogSwitch{
+public:
+    AnalogButton(int pin, bool inverted = false, int pressTimeout = 180,int analogThreshold = 20);
 
     void update();
     bool pressed();
@@ -28,10 +28,8 @@ class AnalogButton : public AnalogInput{
     void release();
 
 private:
-    const long _pressTimeout;
-    long _pressedTime;
-    bool _inverted;
 
     bool _pressed;
-
+    const long _pressTimeout;
+    long _pressedTime;
 };

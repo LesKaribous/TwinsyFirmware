@@ -4,7 +4,7 @@ class InputBase{
 public:
 
     InputBase(int pin, bool pullup = false);
-    void init();
+    virtual void init();
     virtual void update();
 
 protected:
@@ -18,9 +18,9 @@ public:
 
     virtual void update();
 
-    bool getDigitalState();//may be used as a digital input
-    int getRawValue();  //Raw data from analogRead
-    int getValue();     //Stable value
+    bool getDigitalState(); //may be used as a digital input
+    int getRawValue();      //Raw data from analogRead
+    int getValue();         //Stable value
 
     bool changed();
 
@@ -37,16 +37,12 @@ public :
     virtual void update();
 
     bool getState();
-
+    bool changed();
     bool isInverted();
     void setInverted(bool state = true);
-
-    bool changed();
 
 protected:
     bool _inverted;
     bool _pState;
     bool _state;
 };
-
-typedef DigitalInput Switch;

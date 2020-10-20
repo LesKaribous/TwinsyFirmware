@@ -11,6 +11,8 @@ using namespace Core;
 
 //Init modules
 void Core::init(){
+    delay(2000);
+    
     #ifdef DEBUG 
         Debugger::init(); //Warning blocking if no Serial is available
     #endif

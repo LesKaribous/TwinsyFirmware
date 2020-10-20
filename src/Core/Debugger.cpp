@@ -36,8 +36,7 @@ void Debugger::assert(String msg, String file, String line){
     }
 }
 
-template<typename T>
-void Debugger::logData(String name, T value){
+void Debugger::logData(String name, float value){
     DEBUG {
         Serial.print(name + " : "); 
         Serial.println(value);

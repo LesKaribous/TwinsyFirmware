@@ -20,9 +20,9 @@ void InputBase::update(){}
 
 //Analog Input
 
-AnalogInput::AnalogInput(int pin, int threshold) : InputBase(pin){
+AnalogInput::AnalogInput(int pin, int threshold) : InputBase(pin, false){
     _threshold = threshold;
-    _pValue = 0;
+    _value = _pValue = 0;
 }
 
 void AnalogInput::update(){
@@ -31,11 +31,15 @@ void AnalogInput::update(){
 }
 
 bool AnalogInput::getDigitalState(){
-    return _value > 20;
+    return (_value > _threshold);
 }
 
 int AnalogInput::getRawValue(){
     analogRead(_pin);
+}
+
+bool AnalogInput::changed(){
+    return _value != _pValue;
 }
 
 int AnalogInput::getValue(){

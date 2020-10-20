@@ -4,7 +4,6 @@ EventBase::EventBase(String desc){
     _descriptor = desc;
 }
 
-
 bool EventBase::isCanceled(){
     return _canceled;
 }

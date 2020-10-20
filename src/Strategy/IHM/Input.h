@@ -2,14 +2,15 @@
 
 #include "Input/InputBase.h"
 #include "Input/Button.h"
+#include "Input/Switch.h"
 
 namespace Inputs{
     void init();
     void update();
     void eventloop();
 
-    extern  Button checkListButton;
+    extern AnalogButton checkListButton;
     extern Switch strategySwitch;
-    extern Switch teamSwitch;
     extern Switch avoidanceSwitch;
+    extern AnalogSwitch teamSwitch;
 }

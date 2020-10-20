@@ -4,37 +4,43 @@
 #include "Event/Event.h"
 #include "Strategy/pins.h"
 
-namespace Inputs{
-    Button checkListButton(PIN_BUTTON_CHECKLIST);
-    Switch strategySwitch(PIN_SWITCH_STRATEGY);
-    Switch teamSwitch(PIN_SWITCH_TEAM);
-    Switch avoidanceSwitch(PIN_SWITCH_AVOIDANCE);
 
-    void init(){
-        checkListButton.init();
-        strategySwitch.init();
-        teamSwitch.init();
-        avoidanceSwitch.init();
-    }
+AnalogButton Inputs::checkListButton(PIN_BUTTON_CHECKLIST, true, 100); //inverted
+Switch Inputs::strategySwitch(PIN_SWITCH_STRATEGY);
+Switch Inputs::avoidanceSwitch(PIN_SWITCH_AVOIDANCE);
+AnalogSwitch Inputs::teamSwitch(PIN_SWITCH_TEAM);
 
-    void update(){
-        checkListButton.update();
-        strategySwitch.update();
-        teamSwitch.update();
-        avoidanceSwitch.update();
-    }
+void Inputs::init(){
+    checkListButton.init();
+    strategySwitch.init();
+    teamSwitch.init();
+    avoidanceSwitch.init();
 
-    void eventloop(){
-        if( checkListButton.pressed() )
-            Event::fire("checklistPressed");
-        if( strategySwitch.changed() )
-            Event::fire("strategySwitchChanged");
-        if( teamSwitch.changed() )
-            Event::fire("teamSwitchChanged");
-        if( avoidanceSwitch.changed() )
-            Event::fire("avoidanceSwitchChanged");
-    }
+    update(); //Init stableState before event propagation
 }
+
+//+100ms
+void Inputs::update(){
+    checkListButton.update();
+    strategySwitch.update();
+    teamSwitch.update();
+    avoidanceSwitch.update();
+    delay(100);
+}
+
+void Inputs::eventloop(){
+    
+    if( checkListButton.pressed() )
+        Event::fire("checklistPressed");
+    if( strategySwitch.changed() )
+        Event::fire("strategySwitchChanged");
+    if( teamSwitch.changed() )
+        Event::fire("teamSwitchChanged");
+    if( avoidanceSwitch.changed() )
+        Event::fire("avoidanceSwitchChanged");
+
+}
+
 
 
 #endif

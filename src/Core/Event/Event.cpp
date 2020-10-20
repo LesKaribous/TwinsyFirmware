@@ -40,10 +40,13 @@ EventBase& Event::getEvent(String desc){
 }
 
 void Event::flush(){
+    events.clear();
+    /*
     for (size_t i = 0; i < events.size();){ //May be optimized using constructor
         if(events[i].isCanceled()){
             events.erase(events.begin() + i);
         }else i++;
     }
+    */
 }
 
