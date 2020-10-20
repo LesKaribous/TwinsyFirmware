@@ -4,12 +4,13 @@ EventBase::EventBase(String desc){
     _descriptor = desc;
 }
 
+
 bool EventBase::isCanceled(){
-    return canceled;
+    return _canceled;
 }
 
 void EventBase::Cancel(){
-    canceled = true;
+    _canceled = true;
 }
 
 String EventBase::GetDescriptor(){

@@ -7,28 +7,35 @@
 //Strategy
 #include "IHM/IHM.h"
  
-namespace Core{
-    //Init modules
-    void init(){
-        IHM::init();
-        Planner::init();
-        Request::init();
-    }
+using namespace Core;
 
+//Init modules
+void Core::init(){
+    #ifdef DEBUG 
+        Debugger::init(); //Warning blocking if no Serial is available
+    #endif
 
-    //Update modules
-    void update(){
-        Planner::exec();
-        Request::update();
-        IHM::update();
-    }
-
-    //Acquire & stores events
-    void eventloop(){
-        IHM::eventloop();
-        Request::eventloop();
-        
-        Event::flush();
-    }
+    IHM::init();
+    Planner::init();
+    Request::init();
 }
+
+
+//Update modules
+void Core::update(){
+    Planner::exec();
+    Request::update();
+    IHM::update();
+
+    eventloop();
+}
+
+//Acquire & stores events
+void Core::eventloop(){
+    IHM::eventloop();
+    Request::eventloop();
+    
+    Event::flush();
+}
+
 #endif

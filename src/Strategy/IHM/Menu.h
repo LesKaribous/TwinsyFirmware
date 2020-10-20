@@ -5,5 +5,6 @@ namespace Menu{
 
     void init();
     void update();
+    void eventloop();
 
 }

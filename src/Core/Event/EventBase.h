@@ -4,14 +4,13 @@
 class EventBase{
 public:
 
+    EventBase(String desc);
     String GetDescriptor();
+
     void Cancel();
     bool isCanceled();
 
-protected:
-    EventBase(String desc);
-
 private:
     String _descriptor;
-    bool canceled;
+    bool _canceled;
 };

@@ -1,5 +1,5 @@
 
-#include "TwinsyCore/Planner/Planner.h"
+#include "Planner/Planner.h"
 
 /* --- Planner --- */
 

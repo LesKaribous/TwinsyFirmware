@@ -3,8 +3,8 @@
 #include <Arduino.h>
 
 namespace Debugger{
-    static bool enabled = false;
-    inline void init( int baudrate = 115200 );
+    extern bool enable;
+    void init( int baudrate = 115200 );
 
     void assert(String msg);
     void assert(String msg, String sender);

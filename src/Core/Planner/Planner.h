@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-#include "TwinsyCore/Planner/Block.h"
+#include "Planner/Block.h"
 
 class Planner{
     static std::vector<Block*> program;

@@ -1,6 +1,6 @@
 #include <Arduino.h>
 #include "Debugger.h"
-#include "macro.h"
+#include "Macro.h"
 
 namespace Core{
     void init();
