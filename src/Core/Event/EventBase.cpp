@@ -1,7 +1,8 @@
 #include "EventBase.h"
 
-EventBase::EventBase(String desc){
+EventBase::EventBase(String type, String desc){
     _descriptor = desc;
+    _type = type;
 }
 
 bool EventBase::isCanceled(){
@@ -14,4 +15,8 @@ void EventBase::Cancel(){
 
 String EventBase::GetDescriptor(){
     return _descriptor;
+}
+
+String EventBase::GetType(){
+    return _type;
 }

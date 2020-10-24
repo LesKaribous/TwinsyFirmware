@@ -11,18 +11,18 @@ void Event::fire(EventBase& event){
     events.push_back(event);
 }
 
-void Event::fire(String desc){
-    Debugger::assert(desc);
-    events.push_back(EventBase(desc));
+void Event::fire(String type, String desc){
+    Debugger::assert("[Event]:" + type + " - " + desc);
+    events.push_back(EventBase(type, desc));
 }
 
 bool Event::hasEvent(){
     return events.size() > 0;
 }
 
-bool Event::hasEvent(String desc){
+bool Event::hasEvent(String type){
     for (size_t i = 0; i < events.size(); i++){ //May be optimized using constructor
-        if(events[i].GetDescriptor() == desc){
+        if(events[i].GetType() == type){
             return true;
         }
     }

@@ -1,48 +1,36 @@
 #pragma once
 
+#define SAMPLING_COUNT 5
+
 class InputBase{
 public:
 
     InputBase(int pin, bool pullup = false);
     virtual void init();
-    virtual void update();
 
 protected:
     int _pin;
+
+private:
     bool _pullup;
 };
 
 class AnalogInput : public InputBase{
 public:
-    AnalogInput(int pin, int threshold = 20);
+    AnalogInput(int pin);
 
-    virtual void update();
-
-    bool getDigitalState(); //may be used as a digital input
     int getRawValue();      //Raw data from analogRead
     int getValue();         //Stable value
-
-    bool changed();
-
-protected : 
-    int _threshold;
-    int _pValue;
-    int _value;
 };
 
 class DigitalInput : public InputBase{
 public :
     DigitalInput(int pin, bool inverted = false);
 
-    virtual void update();
-
     bool getState();
-    bool changed();
+    bool getRawState();
     bool isInverted();
-    void setInverted(bool state = true);
 
 protected:
     bool _inverted;
-    bool _pState;
-    bool _state;
 };

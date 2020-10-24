@@ -18,6 +18,7 @@ void Core::init(){
     #endif
 
     IHM::init();
+
     Planner::init();
     Request::init();
 }

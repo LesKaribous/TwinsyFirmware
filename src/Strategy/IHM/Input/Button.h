@@ -8,28 +8,26 @@ public :
 
     void update();
     bool pressed();
-
-    void release();
     
 private:
     const long _pressTimeout;
     long _pressedTime;
+    bool _pState;
 
     bool _pressed;
 };
 
 class AnalogButton : public AnalogSwitch{
 public:
-    AnalogButton(int pin, bool inverted = false, int pressTimeout = 180,int analogThreshold = 20);
+    AnalogButton(int pin, bool inverted = false, int pressTimeout = 180);
 
     void update();
     bool pressed();
 
-    void release();
-
 private:
-
-    bool _pressed;
     const long _pressTimeout;
     long _pressedTime;
+    bool _pState;
+
+    bool _pressed;
 };

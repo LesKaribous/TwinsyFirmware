@@ -12,6 +12,7 @@ public:
     static void init();
     static void prepare();
     static void initMsg();
+    static void debug();
     static void splashScreen();
     static U8G2_ST7920_128X64_F_SW_SPI lcd;
 };

@@ -7,11 +7,11 @@ namespace Event{
 
     extern std::vector<EventBase> events;
 
-    void fire(String descriptor);
+    void fire(String type, String descriptor);
     void fire(EventBase& event);
 
     bool hasEvent();
-    bool hasEvent(String desc);
+    bool hasEvent(String type);
 
     EventBase& getEvent();
     EventBase& getEvent(String desc);

@@ -1,20 +1,18 @@
 #pragma once
-
-#include "Core.h"
 #include "InputBase.h"
 
 typedef DigitalInput Switch;
 
-class AnalogSwitch : public DigitalInput{
-public :
-    AnalogSwitch(int pin, bool inverted = false, int threshold = 20) 
-    : DigitalInput(pin, inverted), _threshold(threshold){}
+class AnalogSwitch : public InputBase{
+public:
+    AnalogSwitch(int pin, bool inverted = false);
 
-    void update(){
-        _pState = _state;
-        _state = analogRead(_pin) > _threshold;
-    }
+    bool getRawState();
+    bool getState();
 
-private:
-    int _threshold;
+    bool isInverted();
+
+protected:
+    bool _inverted;
+
 };

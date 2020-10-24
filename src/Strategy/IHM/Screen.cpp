@@ -62,6 +62,9 @@ void Screen::init()
   lcd.begin();
   prepare();
   splashScreen();
+#ifdef DEBUG 
+  debug();
+#endif
 }
 
 void Screen::prepare()
@@ -78,6 +81,14 @@ void Screen::splashScreen()
   lcd.clearBuffer();
   lcd.drawXBMP(0, 15, _LOGO_KARIBOUS_width, _LOGO_KARIBOUS_height, LOGO_KARIBOUS_bits);
   lcd.sendBuffer();
+}
+
+void Screen::debug()
+{
+  Screen::lcd.clearBuffer();
+  Screen::lcd.setFont(u8g2_font_logisoso30_tr);
+  Screen::lcd.drawStr(10, 2, "Debug");
+  Screen::lcd.sendBuffer();
 }
 
 void Screen::initMsg()

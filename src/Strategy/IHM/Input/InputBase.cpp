@@ -16,61 +16,42 @@ void InputBase::init(){
         pinMode(_pin, INPUT);
 }
 
-void InputBase::update(){}
-
 //Analog Input
 
-AnalogInput::AnalogInput(int pin, int threshold) : InputBase(pin, false){
-    _threshold = threshold;
-    _value = _pValue = 0;
-}
-
-void AnalogInput::update(){
-    _pValue = _value;
-    _value = analogRead(_pin);
-}
-
-bool AnalogInput::getDigitalState(){
-    return (_value > _threshold);
-}
+AnalogInput::AnalogInput(int pin) : InputBase(pin, false){}
 
 int AnalogInput::getRawValue(){
-    analogRead(_pin);
-}
-
-bool AnalogInput::changed(){
-    return _value != _pValue;
+    return analogRead(_pin);
 }
 
 int AnalogInput::getValue(){
-    return _value;
+    long result = 0;
+    for (size_t i = 0; i < SAMPLING_COUNT; i++){
+        result += analogRead(_pin);
+    }
+    return result / SAMPLING_COUNT;
 }
 
 //Digital Input (Use Pullup)
-DigitalInput::DigitalInput(int pin, bool inverted) : InputBase(pin, true){
-    _inverted = inverted;
-    _state =_pState = _inverted;
-}
-
-void DigitalInput::update(){
-    _pState = _state;
-    _state = digitalRead(_pin);
-}
+DigitalInput::DigitalInput(int pin, bool inverted) 
+    : InputBase(pin, true), _inverted(inverted){}
 
 bool DigitalInput::getState(){
-    return _state != _inverted;
+    int result = false;
+    for(size_t i(0); i < SAMPLING_COUNT; i++){
+        result += digitalRead(_pin) ? 1 : -1;
+    }
+
+    return (result > 0) != _inverted;
+}
+
+bool DigitalInput::getRawState(){
+    return digitalRead(_pin) != _inverted;
 }
 
 bool DigitalInput::isInverted(){
     return _inverted;
 }
 
-bool DigitalInput::changed(){
-    return _state != _pState;
-}
-
-void DigitalInput::setInverted(bool state){
-    _inverted = state;
-}
 
 #endif
