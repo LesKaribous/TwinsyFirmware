@@ -9,8 +9,10 @@ namespace Inputs{
     void update();
     void eventloop();
 
-    extern AnalogButton checkListButton;
-    extern Switch strategySwitch;
-    extern Switch avoidanceSwitch;
-    extern AnalogSwitch teamSwitch;
+    extern Switch starter;
+    extern Switch jumperRobotType;
+    extern AnalogButton buttonChecklist;
+    extern Switch switchStrategy;
+    extern Switch switchAvoidance;
+    extern AnalogSwitch switchTeam;
 }
