@@ -1,7 +1,6 @@
 #include "Core.h"
 #ifdef STRATEGY
 #include "Input.h"
-#include "Event/Event.h"
 #include "Strategy/pins.h"
 
 Switch Inputs::starter(PIN_STARTER_SENSOR);

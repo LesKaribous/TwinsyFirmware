@@ -3,9 +3,9 @@
 //Core
 #include "Planner/Planner.h"
 #include "Request/Request.h"
-#include "Event/Event.h"
 //Strategy
 #include "IHM/IHM.h"
+#include "IHM/Menu.h"
  
 using namespace Core;
 
@@ -13,11 +13,9 @@ using namespace Core;
 void Core::init(){
     delay(2000);
     
-    #ifdef DEBUG 
-        Debugger::init(); //Warning blocking if no Serial is available
-    #endif
-
     IHM::init();
+    Debugger::init();
+    if(!Debugger::enabled) Menu::focus(Menu::SETTINGS);
 
     Planner::init();
     Request::init();
@@ -29,16 +27,8 @@ void Core::update(){
     Planner::exec();
     Request::update();
     IHM::update();
-
-    eventloop();
 }
 
-//Acquire & stores events
-void Core::eventloop(){
-    IHM::eventloop();
-    Request::eventloop();
-    
-    Event::flush();
-}
+
 
 #endif

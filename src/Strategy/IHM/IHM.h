@@ -3,5 +3,4 @@
 namespace IHM{
     void init();
     void update();
-    void eventloop();
 }

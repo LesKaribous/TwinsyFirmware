@@ -14,9 +14,4 @@ namespace IHM{
         Inputs::update();
         Menu::update();
     }
-
-    void eventloop(){
-        Inputs::eventloop();
-        Menu::eventloop();
-    }
 }

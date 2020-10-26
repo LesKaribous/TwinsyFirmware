@@ -5,6 +5,4 @@
 namespace Core{
     void init();
     void update();
-
-    void eventloop();
 }

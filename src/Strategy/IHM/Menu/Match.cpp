@@ -1,7 +1,7 @@
-#include "TwinsyType.h"
+#include "Core.h"
 #ifdef STRATEGY
 #include "Strategy/IHM/Menu/Match.h"
-#include "Strategy/IHM/Inputs.h"
+#include "Strategy/IHM/Input.h"
 #include "Strategy/IHM/Screen.h"
 #include "Strategy/Score.h"
 #include "Core/MatchTimer.h"

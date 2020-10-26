@@ -3,8 +3,10 @@
 #include <Arduino.h>
 
 namespace Debugger{
-    extern bool enable;
+    extern bool enabled;
     void init( int baudrate = 9600 );
+
+    bool waitForSerial(int timeout = 4000);
 
     void assert(String msg);
     void assert(String msg, String sender);

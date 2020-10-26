@@ -1,10 +1,18 @@
 #pragma once
 
 namespace Menu{
-    static int focus;
+    extern int _focus;
+
+    enum List {
+        DEBUG                   = 0,
+        SETTINGS                = 1,
+        CHECKLIST               = 2,
+        BORDER_CALIBRATION      = 3,
+        MATCH                   = 4
+    };
 
     void init();
     void update();
-    void eventloop();
 
+    void focus(int menu);
 }
