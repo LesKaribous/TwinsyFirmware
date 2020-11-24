@@ -14,7 +14,11 @@ namespace Core{
     }
 
 
-    void eventloop(){
+    void stop(){
+        
+    }
+
+    void emmergencyStop(){
         
     }
 }

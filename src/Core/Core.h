@@ -5,4 +5,7 @@
 namespace Core{
     void init();
     void update();
+
+    void stop();
+    void emergencyStop();
 }
